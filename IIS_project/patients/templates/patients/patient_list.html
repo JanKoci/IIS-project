@@ -26,6 +26,7 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Person ID</th>
                     <th scope="col">Birth Date</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,11 @@
                         <td>{{patient.last_name}}</td>
                         <td>{{patient.person_id}}</td>
                         <td>{{patient.birth_date}}</td>
+                        <td>
+                            <a href="{{patient.get_absolute_url}}">
+                                <button type="button" class="btn-primary">edit</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
