@@ -23,6 +23,7 @@ class Patient(models.Model):
     insurance = models.CharField(max_length=50)
 
 
+
 class RegisteredPatient(models.Model):
     person_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     registration_date = models.DateField()
@@ -37,3 +38,27 @@ class NotRegisteredPatient(models.Model):
     doctor_address_street = models.CharField(max_length=50)
     doctor_address_psc = models.CharField(max_length=5)
     doctor_address_country = models.CharField(max_length=50)
+
+
+stat_id = 9707157835
+
+from faker import Faker
+def populate_users(num):
+    global stat_id
+    fake = Faker()
+    for i in range(num):
+        person_id = stat_id
+        stat_id += 1
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        birth_date = fake.date(pattern="%Y-%m-%d", end_datetime=None)
+        address_city = fake.city()
+        address_street = fake.street_name()
+        address_psc = fake.postcode()
+        address_country = fake.country()
+        phone_number = fake.phone_number()
+        insurance = fake.company()
+        p = Patient(person_id, first_name, last_name, birth_date, address_city,
+            address_street, address_psc, address_country, phone_number)
+        p.insurance = insurance
+        p.save()
