@@ -3,6 +3,13 @@
 {% block content %}
     <div class="jumbotron">
         <h1>Patient Detail</h1>
+        <a href="#">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'patients:patient_update' pk=patient.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
+
         <table class="table table-bordered">
             <tr>
                 <td> <label>First Name:</label></td>
