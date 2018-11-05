@@ -22,11 +22,11 @@ class PatientUpdateView(UpdateView):
     model = models.Patient
     template_name = 'patients/patient_form.html'
     fields = ['first_name', 'last_name', 'person_id', 'birth_date', 'address_city',
-            'address_street', 'address_psc', 'address_country', 'insurance']
+            'address_street', 'address_psc', 'address_country', 'phone_number', 'insurance']
 
 
 class PatientCreateView(CreateView):
     model = models.Patient
     template_name = 'patients/patient_form.html'
     fields = ['first_name', 'last_name', 'person_id', 'birth_date', 'address_city',
-            'address_street', 'address_psc', 'address_country', 'insurance']
+            'address_street', 'address_psc', 'address_country', 'phone_number', 'insurance']
