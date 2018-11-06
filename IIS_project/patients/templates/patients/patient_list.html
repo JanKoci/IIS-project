@@ -2,8 +2,11 @@
 
 {% block content %}
     <div class="jumbotron">
-        <a href="{% url 'patients:patient_create' %}">
-            <button type="button" class="btn btn-info btn-lg">ADD NEW</button>
+        <a href="{% url 'patients:notreg_patient_create' %}">
+            <button type="button" class="btn btn-info btn-lg">ADD Not Registered</button>
+        </a>
+        <a href="{% url 'patients:reg_patient_create' %}">
+            <button type="button" class="btn btn-info btn-lg">ADD Registered</button>
         </a>
         <br>
         <br>
@@ -42,6 +45,9 @@
                         <td>{{patient.person_id}}</td>
                         <td>{{patient.birth_date}}</td>
                         <td>
+                            {% if patient.registeredpatient %}
+                                
+                            {% endif %}
                             <a href="{{patient.get_absolute_url}}">
                                 <button type="button" class="btn-info" script="background-color: red;">detail</button>
                             </a>

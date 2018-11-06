@@ -51,6 +51,31 @@
                 <td> <label>Insurance:</label></td>
                 <td>{{patient.insurance}}</td>
             </tr>
+            {% if patient.notregisteredpatient %}
+                <tr>
+                    <td> <label>Doctor Name:</label></td>
+                    <td>{{patient.notregisteredpatient.doctor_first_name}}
+                        {{patient.notregisteredpatient.doctor_last_name}}</td>
+                </tr>
+                <tr>
+                    <td> <label>Doctor Phone:</label></td>
+                    <td>{{patient.notregisteredpatient.doctor_phone}}</td>
+                </tr>
+                <tr>
+                    <td> <label>Doctor Address:</label></td>
+                    <td>{{patient.notregisteredpatient.doctor_address_city}},
+                        {{patient.notregisteredpatient.doctor_address_street}}
+                        {{patient.notregisteredpatient.doctor_address_psc}},
+                        {{patient.notregisteredpatient.doctor_address_country}}</td>
+                </tr>
+            {% else %}
+            <tr>
+                <td> <label>Registration Date:</label></td>
+                <td>{{patient.registeredpatient.registration_date}}</td>
+            </tr>
+            {% endif %}
+
+
         </table>
     </div>
 

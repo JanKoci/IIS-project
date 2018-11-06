@@ -30,14 +30,12 @@ class Patient(models.Model):
 
 
 
-class RegisteredPatient(models.Model):
-    person_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
+class RegisteredPatient(Patient):
     registration_date = models.DateField()
 
 
-class NotRegisteredPatient(models.Model):
+class NotRegisteredPatient(Patient):
     global phone_regex
-    person_id = models.ForeignKey('Patient', on_delete=models.CASCADE)
     doctor_first_name = models.CharField(max_length=25)
     doctor_last_name = models.CharField(max_length=25)
     doctor_phone = models.CharField(validators=[phone_regex], max_length=17)
