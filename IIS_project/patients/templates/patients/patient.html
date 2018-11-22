@@ -1,9 +1,11 @@
+{# TODO: radit pacienty podle abecedy #}
+
 {% extends "base.html" %}
 
 {% block content %}
     <div class="jumbotron">
         <h1>Patient Detail</h1>
-        <a href="#">
+        <a href="{% url 'patients:patient_delete' pk=patient.pk %}">
             <button type="delete" class="btn-danger" style="float: right;">Delete</button>
         </a>
         <a href="{% url 'patients:patient_update' pk=patient.pk %}">

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.views.generic.edit import UpdateView, CreateView
+from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.detail import DetailView
 from django_filters.views import FilterView
+from django.urls import reverse_lazy
 from patients import models
 
 # from django.http import HttpResponse
@@ -40,3 +41,14 @@ class RegisteredPatientCreateView(CreateView):
     fields = ['first_name', 'last_name', 'person_id', 'birth_date', 'address_city',
             'address_street', 'address_psc', 'address_country', 'phone_number',
             'insurance', 'registration_date']
+
+class PatientDeleteView(DeleteView):
+    model = models.Patient
+    template_name = 'patients/patient_confirm_delete.html'
+    success_url = reverse_lazy('patients:patient_list')
+
+# class NotRegPatientDeleteView(DetailView):
+#     model = models.NotRegisteredPatient
+#     context_object_name = "patient"
+#     template_name = 'patient_confirm_delete.html'
+#     success_url = reverse_lazy('patients:patient_list')
