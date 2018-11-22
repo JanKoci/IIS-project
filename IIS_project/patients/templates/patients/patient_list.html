@@ -35,6 +35,7 @@
                     <th scope="col">Person ID</th>
                     <th scope="col">Birth Date</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,12 +46,14 @@
                         <td>{{patient.person_id}}</td>
                         <td>{{patient.birth_date}}</td>
                         <td>
-                            {% if patient.registeredpatient %}
-                                
-                            {% endif %}
                             <a href="{{patient.get_absolute_url}}">
                                 <button type="button" class="btn-info" script="background-color: red;">detail</button>
                             </a>
+                        </td>
+                        <td>
+                            {% if not patient.registeredpatient %}
+                                <span class="label label-warning" data-toggle="tooltip" data-placement="top" title="Not Registered patient">N</span>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

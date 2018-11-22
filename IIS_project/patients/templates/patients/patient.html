@@ -1,4 +1,6 @@
-{# TODO: radit pacienty podle abecedy #}
+<!--
+    TODO: radit pacienty podle abecedy
+-->
 
 {% extends "base.html" %}
 
@@ -8,9 +10,16 @@
         <a href="{% url 'patients:patient_delete' pk=patient.pk %}">
             <button type="delete" class="btn-danger" style="float: right;">Delete</button>
         </a>
-        <a href="{% url 'patients:patient_update' pk=patient.pk %}">
-            <button type="edit" class="btn-info" style="float: right;">Edit</button>
-        </a>
+        {% if patient.registeredpatient %}
+            <a href="{% url 'patients:patient_update' pk=patient.pk %}">
+                <button type="edit" class="btn-info" style="float: right;">Edit</button>
+            </a>
+        {% else %}
+            <a href="{% url 'patients:notreg_patient_update' pk=patient.pk %}">
+                <button type="edit" class="btn-info" style="float: right;">Edit</button>
+            </a>
+        {% endif %}
+
 
         <table class="table table-bordered">
             <tr>
