@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Are you sure you want to delete the patient ?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn-danger btn-lg" value="Delete">
+        <a href="{% url 'patients:patient_detail' pk=patient.pk %}">
+            <button type="button" class="btn-lg" name="button">Cancel</button>
+        </a>
+
+    </form>
+{% endblock %}

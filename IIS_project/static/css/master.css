@@ -41,3 +41,42 @@
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #FFF;
 }
+
+.btn-info {
+    color: #FFF;
+    /* background-color: #0066CC; */
+    background: #66B2FF;
+}
+
+.btn-info:active {
+    color: #FFF;
+    background-color: #0066CC;
+}
+
+.btn-info:focus {
+    background-color: #0066CC;
+}
+
+.btn-info:hover {
+    background-color: #0066CC;
+}
+
+.btn-primary {
+    background: #0066CC;
+    background-color: #0066CC;
+    color: #FFF;
+}
+
+.bg-primary {
+    background: #0066CC;
+    color: #FFF;
+}
+
+.bg-info {
+    /* background-color: #0066CC; */
+    background: white;
+}
+
+.pos_right {
+    float: right;
+}
