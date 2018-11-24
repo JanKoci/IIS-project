@@ -17,7 +17,7 @@
                     <td>
                         {{field.label_tag}} {{field}}
                     </td>
-                    {%if forloop.counter|divisibleby:"3" %}
+                    {%if forloop.counter|divisibleby:"2" %}
                         </tr>
                         <tr class="bg-info">
                     {% endif %}
@@ -47,7 +47,7 @@
                         <td>{{patient.birth_date}}</td>
                         <td>
                             <a href="{{patient.get_absolute_url}}">
-                                <button type="button" class="btn-info" script="background-color: red;">detail</button>
+                                <button type="button" class="btn-info">detail</button>
                             </a>
                         </td>
                         <td>

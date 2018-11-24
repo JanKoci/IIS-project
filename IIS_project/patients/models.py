@@ -5,6 +5,7 @@ from django.urls import reverse
 
 # Create your models here.
 
+# make them local variables ?
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed")
 id_regex = RegexValidator(regex=r'^[0-9]+$', message="Id should contain only numbers")
 psc_regex = RegexValidator(regex=r'^[0-9]{5}', message="Postcode has to be 5 digit number")

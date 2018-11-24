@@ -22,5 +22,6 @@ from IIS_project import views
 urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('patients/', include('patients.urls', namespace='patients')),
+    path('visits/', include('visits.urls', namespace='visits')),
     path('admin/', admin.site.urls),
 ]
