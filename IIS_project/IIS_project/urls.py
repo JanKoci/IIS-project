@@ -23,4 +23,5 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('patients/', include('patients.urls', namespace='patients')),
     path('admin/', admin.site.urls),
+    path('appointments/', include('appointments.urls', namespace='appointments'))
 ]
