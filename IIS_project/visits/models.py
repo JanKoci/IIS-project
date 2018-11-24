@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from patients.models import Patient
 
 # Create your models here.
@@ -15,6 +16,9 @@ class Operation(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     visit_id = models.ForeignKey(Visit, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("visits:visit_detail", kwargs={'pk':self.visit_id.pk})
 
 
 class Medicament(models.Model):

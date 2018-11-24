@@ -27,3 +27,18 @@ class VisitCreateView(CreateView):
     success_url = reverse_lazy('visits:visit_list')
     fields = ['visit_date', 'visit_time', 'patient_id']
     # form_class = VisitCreateForm
+
+
+class OperationCreateView(CreateView):
+    model = models.Operation
+    template_name = 'visits/operation_form.html'
+    fields = ['name', 'visit_id']
+
+    # def form_valid(self, form):
+    #     self.fields = models.Visit.objects.get(pk=self.kwargs['visit'])
+    #     return super(OperationCreateView, self).form_valid(form)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
+        return initial

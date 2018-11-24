@@ -1,4 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Visit Detail</h1>
+    <div class="jumbotron">
+        <h1>Visit Detail</h1>
+
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Date:</label></td>
+                <td>{{visit.visit_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Time:</label></td>
+                <td>{{visit.visit_time}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{visit.patient_id.first_name}} {{visit.patient_id.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient ID:</label></td>
+                <td>{{visit.patient_id.person_id}}</td>
+            </tr>
+            <tr>
+                <td><label>Operations:</label></td>
+                <td>
+                    <a href="{% url 'visits:operation_create' visit=visit.id %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for operation in visit.operation_set.all %}
+                        {{operation.name}}, 
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
