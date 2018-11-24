@@ -31,8 +31,28 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Person ID</th>
                     <th scope="col">Date</th>
+                    <th/>
+                    <th/>
                 </tr>
             </thead>
+            <tbody>
+                {% for appointment in filter.qs %}
+                    <tr>
+                        <td>{{ appointment.patient.first_name }} </td>
+                        <td>{{ appointment.patient.last_name }}</td>
+                        <td>{{ appointment.patient.person_id }}</td>
+                        <td>{{ appointment.appointment_date }}</td>
+                        <td>
+                            <a href="{{ appointment.get_absolute_url }}">
+                            <button type="button" class="btn-info" script="background-color: red;">detail</button>
+                            </a>
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
             
         </table>
     </div>>

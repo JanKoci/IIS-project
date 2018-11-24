@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if not form.instance.pk %}
+                <input type="submit" value="Create" class="btn-info">
+            {% else %}
+                <input type="submit" value="Update" class="btn-info">
+            {% endif %}
+        </form>
+    </div>
+{% endblock  %}

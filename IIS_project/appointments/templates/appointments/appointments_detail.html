@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Appointment Detail</h1>
+        <a href="{% url 'appointments:appointment_update' pk=appointment.pk %}">
+            <button type="button" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <a href="{% url 'patients:patient_detail' pk=appointment.patient.person_id %}">
+            <button type="button" class="btn-info" style="float: right;" script="background-color: red;">Patient detail</button>
+        </a>
+
+        <table class="table table-boarded">
+            <tr>
+                <td> <label>First Name: </label></td>
+                <td>{{appointment.patient.first_name}}</td>
+            </tr>
+            <tr>
+                <td> <label>Last Name: </label></td>
+                <td>{{appointment.patient.last_name}}</td>
+            </tr>
+            <tr>
+                <td> <label>Person ID: </label></td>
+                <td>{{appointment.patient.person_id}}
+            </tr>
+            <tr>
+                <td> <label>Birth Date: </label></td>
+                <td>{{appointment.patient.birth_date}}
+            </tr>
+            <tr>
+                <td> <label>Insurence: </label></td>
+                <td>{{appointment.patient.insurance}}</td>
+            </tr>
+            <tr>
+                <td> <label>Prescriptions: </label></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> <label>Operations: </label> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> <label>Further Examination: </label> </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
