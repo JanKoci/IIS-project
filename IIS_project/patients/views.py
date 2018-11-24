@@ -5,6 +5,8 @@ from django.views.generic.detail import DetailView
 from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from patients import models
+from patients.forms import NotRegPatientForm, RegPatientForm
+
 
 # from django.http import HttpResponse
 
@@ -19,11 +21,17 @@ class PatientDetailView(DetailView):
     template_name = 'patients/patient.html'
     model = models.Patient
 
-class PatientUpdateView(UpdateView):
-    model = models.Patient
+class RegPatientUpdateView(UpdateView):
+    model = models.RegisteredPatient
     template_name = 'patients/patient_form.html'
-    fields = ['first_name', 'last_name', 'person_id', 'birth_date', 'address_city',
-            'address_street', 'address_psc', 'address_country', 'phone_number', 'insurance']
+    form_class = RegPatientForm
+
+
+class NotRegPatientUpdateView(UpdateView):
+    model = models.NotRegisteredPatient
+    template_name = 'patients/patient_form.html'
+    form_class = NotRegPatientForm
+
 
 
 class NotRegisteredPatientCreateView(CreateView):
@@ -40,7 +48,7 @@ class RegisteredPatientCreateView(CreateView):
     template_name = 'patients/patient_form.html'
     fields = ['first_name', 'last_name', 'person_id', 'birth_date', 'address_city',
             'address_street', 'address_psc', 'address_country', 'phone_number',
-            'insurance', 'registration_date']
+            'insurance']
 
 class PatientDeleteView(DeleteView):
     model = models.Patient
