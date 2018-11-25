@@ -39,6 +39,32 @@ class VisitDeleteView(DeleteView):
     success_url = reverse_lazy('visits:visit_list')
 
 
+class MedicamentCreateView(CreateView):
+    model = models.Medicament
+    template_name = 'visits/medicament_form.html'
+    fields = ['name', 'substance', 'visit_id']
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
+        return initial
+
+
+class MedicamentDetailView(DetailView):
+    model = models.Medicament
+    template_name = 'visits/medicament.html'
+
+
+class MedicamentDeleteView(DeleteView):
+    model = models.Medicament
+    template_name = 'visits/medicament_confirm_delete.html'
+
+    def get_success_url(self):
+        medicament = models.Medicament.objects.get(pk=self.kwargs['pk'])
+        visit = medicament.visit_id
+        return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})
+
+
 class OperationCreateView(CreateView):
     model = models.Operation
     template_name = 'visits/operation_form.html'

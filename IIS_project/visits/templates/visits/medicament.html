@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Medicament Detail</h1>
+        <a href="{% url 'visits:medicament_delete' pk=medicament.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Name:</label></td>
+                <td>{{medicament.name}}</td>
+            </tr>
+            <tr>
+                <td><label>Substance:</label></td>
+                <td>{{medicament.substance}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient:</label></td>
+                <td>{{medicament.visit_id.patient_id.first_name}} {{medicament.visit_id.patient_id.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient ID:</label></td>
+                <td>{{medicament.visit_id.patient_id.person_id}}</td>
+            </tr>
+            <tr>
+                <td><label>Visit Date:</label></td>
+                <td>{{medicament.visit_id.visit_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Visit Time:</label></td>
+                <td>{{medicament.visit_id.visit_time}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

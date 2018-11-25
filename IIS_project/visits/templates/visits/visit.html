@@ -36,6 +36,20 @@
                     {% endfor %}
                 </td>
             </tr>
+            <tr>
+                <td><label>Medicaments:</label></td>
+                <td>
+                    <a href="{% url 'visits:medicament_create' visit=visit.pk %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for medicament in visit.medicament_set.all %}
+                        <a href="{% url 'visits:medicament_detail' pk=medicament.pk %}">
+                            {{medicament.name}}
+                        </a>
+                        ,
+                    {% endfor %}
+                </td>
+            </tr>
         </table>
     </div>
 {% endblock %}

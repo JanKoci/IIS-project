@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Add Medicament</h1>
+    <br>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Add" class="btn-info">
+    </form>
+
+</div>
+
+{% endblock %}
