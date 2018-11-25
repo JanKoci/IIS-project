@@ -50,6 +50,20 @@
                     {% endfor %}
                 </td>
             </tr>
+            <tr>
+                <td><label>External Examination:</label></td>
+                <td>
+                    <a href="{% url 'visits:examination_create' visit=visit.pk %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for examination in visit.examination_set.all %}
+                        <a href="{% url 'visits:examination_detail' pk=examination.pk %}">
+                            {{examination.id}}
+                        </a>
+                        ,
+                    {% endfor %}
+                </td>
+            </tr>
         </table>
     </div>
 {% endblock %}

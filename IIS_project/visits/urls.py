@@ -9,9 +9,12 @@ urlpatterns = [
     path('create/', views.VisitCreateView.as_view(), name='visit_create'),
     path('update/<int:pk>/', views.VisitUpdateView.as_view(), name='visit_update'),
     path('delete/<int:pk>/', views.VisitDeleteView.as_view(), name='visit_delete'),
-    path('medicament/create/<int:visit>', views.MedicamentCreateView.as_view(), name='medicament_create'),
+    path('medicament/create/<int:visit>/', views.MedicamentCreateView.as_view(), name='medicament_create'),
     path('medicament/<int:pk>/', views.MedicamentDetailView.as_view(), name='medicament_detail'),
-    path('medicament/delete/<int:pk>', views.MedicamentDeleteView.as_view(), name='medicament_delete'),
+    path('medicament/delete/<int:pk>/', views.MedicamentDeleteView.as_view(), name='medicament_delete'),
+    path('examination/create/<int:visit>/', views.ExaminationCreateView.as_view(), name='examination_create'),
+    path('examination/<int:pk>/', views.ExaminationDetailView.as_view(), name='examination_detail'),
+    path('examination/delete/<int:pk>/', views.ExaminationDeleteView.as_view(), name='examination_delete'),
 
     path('operation/create/<int:visit>/', views.OperationCreateView.as_view(), name='operation_create'),
 
