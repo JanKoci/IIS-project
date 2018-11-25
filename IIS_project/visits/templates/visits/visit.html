@@ -23,7 +23,11 @@
             </tr>
             <tr>
                 <td><label>Patient ID:</label></td>
-                <td>{{visit.patient_id.person_id}}</td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=visit.patient_id.person_id %}">
+                        {{visit.patient_id.person_id}}
+                    </a>
+                </td>
             </tr>
             <tr>
                 <td><label>Operations:</label></td>
