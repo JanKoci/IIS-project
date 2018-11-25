@@ -24,9 +24,19 @@ class VisitDetailView(DetailView):
 class VisitCreateView(CreateView):
     model = models.Visit
     template_name = 'visits/visit_form.html'
-    success_url = reverse_lazy('visits:visit_list')
     fields = ['visit_date', 'visit_time', 'patient_id']
     # form_class = VisitCreateForm
+
+
+class VisitUpdateView(UpdateView):
+    model = models.Visit
+    template_name = 'visits/visit_form.html'
+    fields = ['visit_date', 'visit_time']
+
+class VisitDeleteView(DeleteView):
+    model = models.Visit
+    template_name = 'visits/visit_confirm_delete.html'
+    success_url = reverse_lazy('visits:visit_list')
 
 
 class OperationCreateView(CreateView):
@@ -35,10 +45,11 @@ class OperationCreateView(CreateView):
     fields = ['name', 'visit_id']
 
     # def form_valid(self, form):
-    #     self.fields = models.Visit.objects.get(pk=self.kwargs['visit'])
+    #     visit_id = models.Visit.objects.get(pk=self.kwargs['visit'])
     #     return super(OperationCreateView, self).form_valid(form)
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
+        if ('visit' in self.kwargs):
+            initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
         return initial

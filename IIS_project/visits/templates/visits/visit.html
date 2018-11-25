@@ -2,7 +2,12 @@
 {% block content %}
     <div class="jumbotron">
         <h1>Visit Detail</h1>
-
+        <a href="{% url 'visits:visit_delete' pk=visit.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'visits:visit_update' pk=visit.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
         <table class="table table-bordered">
             <tr>
                 <td><label>Date:</label></td>
@@ -27,7 +32,7 @@
                         <button class="btn-info">Add</button>
                     </a>
                     {% for operation in visit.operation_set.all %}
-                        {{operation.name}}, 
+                        {{operation.name}},
                     {% endfor %}
                 </td>
             </tr>

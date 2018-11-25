@@ -11,6 +11,9 @@ class Visit(models.Model):
     # creation_date = models.DateField(auto_now_add=True)
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return reverse("visits:visit_detail", kwargs={'pk':self.pk})
+
 
 class Operation(models.Model):
     id = models.AutoField(primary_key=True)
@@ -27,6 +30,9 @@ class Medicament(models.Model):
     substance = models.CharField(max_length=50)
     visit_id = models.ForeignKey(Visit, on_delete=models.CASCADE)
 
+    def get_absolute_url(self):
+        return reverse("visits:visit_detail", kwargs={'pk':self.visit_id.pk})
+
 
 # ExternalExamination ???
 class Examination(models.Model):
@@ -37,3 +43,6 @@ class Examination(models.Model):
     workplace_postcode = models.CharField(max_length=5)
     workplace_name = models.CharField(max_length=50)
     visit_id = models.ForeignKey(Visit, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse("visits:visit_detail", kwargs={'pk':self.visit_id.pk})

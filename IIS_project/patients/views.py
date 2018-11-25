@@ -55,9 +55,3 @@ class PatientDeleteView(DeleteView):
     model = models.Patient
     template_name = 'patients/patient_confirm_delete.html'
     success_url = reverse_lazy('patients:patient_list')
-
-# class NotRegPatientDeleteView(DetailView):
-#     model = models.NotRegisteredPatient
-#     context_object_name = "patient"
-#     template_name = 'patient_confirm_delete.html'
-#     success_url = reverse_lazy('patients:patient_list')
