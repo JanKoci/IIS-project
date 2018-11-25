@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
+from django.views.generic import DeleteView
 from django_filters.views import FilterView
+from django.urls import reverse_lazy
 from appointments import models
 from .filters import AppointmentFilter
 from appointments.forms import AppointmentForm
@@ -30,3 +32,9 @@ class AppointmentUpdateView(UpdateView):
     model = models.Appointment
     template_name = 'appointments/appointments_form.html'
     form_class = AppointmentForm
+
+
+class AppointmentDeleteView(DeleteView):
+    model = models.Appointment
+    template_name = 'appointments/appointments_delete.html'
+    success_url = reverse_lazy('appointments:appointments_list')
