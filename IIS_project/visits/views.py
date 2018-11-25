@@ -21,6 +21,7 @@ class VisitDetailView(DetailView):
     context_object_name = 'visit'
     template_name = 'visits/visit.html'
 
+
 class VisitCreateView(CreateView):
     model = models.Visit
     template_name = 'visits/visit_form.html'
@@ -32,6 +33,7 @@ class VisitUpdateView(UpdateView):
     model = models.Visit
     template_name = 'visits/visit_form.html'
     fields = ['visit_date', 'visit_time']
+
 
 class VisitDeleteView(DeleteView):
     model = models.Visit
@@ -103,6 +105,8 @@ class OperationCreateView(CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
+
+        # if self.kwargs['visit_id']
         if ('visit' in self.kwargs):
             initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
         return initial
