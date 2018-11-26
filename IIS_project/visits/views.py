@@ -32,7 +32,7 @@ class VisitCreateView(CreateView):
 class VisitUpdateView(UpdateView):
     model = models.Visit
     template_name = 'visits/visit_form.html'
-    fields = ['visit_date', 'visit_time']
+    fields = ['visit_date', 'visit_time', 'patient_id']
 
 
 class VisitDeleteView(DeleteView):
@@ -94,14 +94,14 @@ class ExaminationDeleteView(DeleteView):
         return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})
 
 
-class OperationCreateView(CreateView):
-    model = models.Operation
-    template_name = 'visits/operation_form.html'
+class PerformanceCreateView(CreateView):
+    model = models.Performance
+    template_name = 'visits/performance_form.html'
     fields = ['name', 'visit_id']
 
     # def form_valid(self, form):
     #     visit_id = models.Visit.objects.get(pk=self.kwargs['visit'])
-    #     return super(OperationCreateView, self).form_valid(form)
+    #     return super(PerformanceCreateView, self).form_valid(form)
 
     def get_initial(self):
         initial = super().get_initial()
@@ -110,3 +110,18 @@ class OperationCreateView(CreateView):
         if ('visit' in self.kwargs):
             initial['visit_id'] = models.Visit.objects.get(pk=self.kwargs['visit'])
         return initial
+
+
+class PerformanceDetailView(DetailView):
+    model = models.Performance
+    template_name = 'visits/performance.html'
+
+
+class PerformanceDeleteView(DeleteView):
+    model = models.Performance
+    template_name = 'visits/performance_confirm_delete.html'
+
+    def get_success_url(self):
+        performance = models.Performance.objects.get(pk=self.kwargs['pk'])
+        visit = performance.visit_id
+        return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})

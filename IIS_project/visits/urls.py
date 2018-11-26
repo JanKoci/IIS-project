@@ -16,6 +16,8 @@ urlpatterns = [
     path('examination/<int:pk>/', views.ExaminationDetailView.as_view(), name='examination_detail'),
     path('examination/delete/<int:pk>/', views.ExaminationDeleteView.as_view(), name='examination_delete'),
 
-    path('operation/create/<int:visit>/', views.OperationCreateView.as_view(), name='operation_create'),
+    path('performance/create/<int:visit>/', views.PerformanceCreateView.as_view(), name='performance_create'),
+    path('performance/<int:pk>/', views.PerformanceDetailView.as_view(), name='performance_detail'),
+    path('performance/delete/<int:pk>/', views.PerformanceDeleteView.as_view(), name='performance_delete'),
 
 ]

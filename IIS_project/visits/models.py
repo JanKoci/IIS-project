@@ -21,7 +21,7 @@ class Visit(models.Model):
         return reverse("visits:visit_detail", kwargs={'pk':self.pk})
 
 
-class Operation(models.Model):
+class Performance(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     visit_id = models.ForeignKey(Visit, on_delete=models.CASCADE)

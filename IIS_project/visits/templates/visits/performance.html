@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Performance Detail</h1>
+        <a href="{% url 'visits:performance_delete' pk=performance.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Name:</label></td>
+                <td>{{performance.name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{performance.visit_id.patient_id.first_name}} {{performance.visit_id.patient_id.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=performance.visit_id.patient_id.person_id %}">
+                        {{performance.visit_id.patient_id.person_id}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Visit Date:</label></td>
+                <td>{{performance.visit_id.visit_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Visit Time:</label></td>
+                <td>{{performance.visit_id.visit_time}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}
