@@ -5,6 +5,9 @@
         <a href="{% url 'visits:performance_delete' pk=performance.pk %}">
             <button type="delete" class="btn-danger" style="float: right;">Delete</button>
         </a>
+        <a href="{% url 'visits:performance_update' pk=performance.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
         <table class="table table-bordered">
             <tr>
                 <td><label>Name:</label></td>

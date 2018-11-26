@@ -57,6 +57,12 @@ class MedicamentDetailView(DetailView):
     template_name = 'visits/medicament.html'
 
 
+class MedicamentUpdateView(UpdateView):
+    model = models.Medicament
+    template_name = 'visits/medicament_form.html'
+    fields = ['name', 'substance']
+
+
 class MedicamentDeleteView(DeleteView):
     model = models.Medicament
     template_name = 'visits/medicament_confirm_delete.html'
@@ -82,6 +88,13 @@ class ExaminationCreateView(CreateView):
 class ExaminationDetailView(DetailView):
     model = models.Examination
     template_name = 'visits/examination.html'
+
+
+class ExaminationUpdateView(UpdateView):
+    model = models.Examination
+    template_name = 'visits/examination_form.html'
+    fields = ['date', 'time', 'workplace_city', 'workplace_street', 'workplace_postcode',
+            'workplace_name']
 
 
 class ExaminationDeleteView(DeleteView):
@@ -115,6 +128,12 @@ class PerformanceCreateView(CreateView):
 class PerformanceDetailView(DetailView):
     model = models.Performance
     template_name = 'visits/performance.html'
+
+
+class PerformanceUpdateView(UpdateView):
+    model = models.Performance
+    template_name = 'visits/performance_form.html'
+    fields = ['name']
 
 
 class PerformanceDeleteView(DeleteView):
