@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
-        <h1>Create new visit</h1>
+        {% if not form.instance.pk %}
+            <h1>Create Visit</h1>
+        {% else %}
+            <h1>Update Visit</h1>
+        {% endif %}
         <br>
         <br>
         <form method="post">
