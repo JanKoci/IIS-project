@@ -76,8 +76,8 @@ class MedicamentDeleteView(DeleteView):
 class ExaminationCreateView(CreateView):
     model = models.Examination
     template_name = 'visits/examination_form.html'
-    fields = ['date', 'time', 'workplace_city', 'workplace_street', 'workplace_postcode',
-            'workplace_name', 'visit_id']
+    fields = ['name', 'date', 'time', 'workplace_city', 'workplace_street',
+            'workplace_postcode', 'workplace_name', 'visit_id']
 
     def get_initial(self):
         initial = super().get_initial()
@@ -93,8 +93,8 @@ class ExaminationDetailView(DetailView):
 class ExaminationUpdateView(UpdateView):
     model = models.Examination
     template_name = 'visits/examination_form.html'
-    fields = ['date', 'time', 'workplace_city', 'workplace_street', 'workplace_postcode',
-            'workplace_name']
+    fields = ['name', 'date', 'time', 'workplace_city', 'workplace_street',
+            'workplace_postcode', 'workplace_name']
 
 
 class ExaminationDeleteView(DeleteView):

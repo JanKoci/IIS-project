@@ -65,7 +65,7 @@
                     </a>
                     {% for examination in visit.examination_set.all %}
                         <a href="{% url 'visits:examination_detail' pk=examination.pk %}">
-                            {{examination.id}}
+                            {{examination.name}}
                         </a>
                         ,
                     {% endfor %}

@@ -43,6 +43,7 @@ class Medicament(models.Model):
 # ExternalExamination ???
 class Examination(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
     date = models.DateField()
     time = models.TimeField()
     workplace_city = models.CharField(max_length=50, blank=True)
