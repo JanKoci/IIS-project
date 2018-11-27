@@ -33,6 +33,13 @@ class Patient(models.Model):
     def get_absolute_url(self):
         return reverse("patients:patient_detail", kwargs={'pk':self.pk})
 
+    def __str__(self):
+        return "{first_name} {last_name} ( {person_id} )".format(
+                                                            first_name=self.first_name,
+                                                            last_name=self.last_name,
+                                                            person_id=self.person_id
+                                                        )
+
 
 
 class RegisteredPatient(Patient):
@@ -61,23 +68,23 @@ def populate_users(num):
     not_registered = round(num * not_registered_ratio)
     registered = num - not_registered
 
-    # for i in range(num):
-    #     person_id = stat_id
-    #     stat_id += 1
-    #     first_name = fake.first_name()
-    #     last_name = fake.last_name()
-    #     birth_date = fake.date(pattern="%Y-%m-%d", end_datetime=None)
-    #     address_city = fake.city()
-    #     address_street = fake.street_name()
-    #     address_psc = fake.postcode()
-    #     address_country = fake.country()
-    #     phone_number = fake.phone_number()
-    #     insurance = fake.company()
-    #     p = RegisteredPatient(person_id, first_name, last_name, birth_date, address_city,
-    #         address_street, address_psc, address_country, phone_number, insurance)
-    #     # p.insurance = insurance
-    #     p.registration_date = fake.date(pattern="%Y-%m-%d", end_datetime=None)
-    #     p.save()
+    for i in range(num):
+        person_id = stat_id
+        stat_id += 1
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        birth_date = fake.date(pattern="%Y-%m-%d", end_datetime=None)
+        address_city = fake.city()
+        address_street = fake.street_name()
+        address_psc = fake.postcode()
+        address_country = fake.country()
+        phone_number = fake.phone_number()
+        insurance = fake.company()
+        p = RegisteredPatient(person_id, first_name, last_name, birth_date, address_city,
+            address_street, address_psc, address_country, phone_number, insurance)
+        p.insurance = insurance
+        p.registration_date = fake.date(pattern="%Y-%m-%d", end_datetime=None)
+        p.save()
 
     for i in range(num):
         person_id = stat_id
