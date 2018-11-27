@@ -1,3 +1,9 @@
+"""
+    TODO:
+        * validators
+            - aby nebylo birth_date v budoucnosti
+"""
+
 from django.db import models
 from django.core.validators import RegexValidator
 from django.urls import reverse
@@ -5,6 +11,7 @@ from django.urls import reverse
 
 # Create your models here.
 
+# make them local variables ?
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed")
 id_regex = RegexValidator(regex=r'^[0-9]+$', message="Id should contain only numbers")
 psc_regex = RegexValidator(regex=r'^[0-9]{5}', message="Postcode has to be 5 digit number")
@@ -16,12 +23,12 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     birth_date = models.DateField()
-    address_city = models.CharField(max_length=50)
-    address_street = models.CharField(max_length=50)
-    address_psc = models.CharField(max_length=5, validators=[psc_regex])
-    address_country = models.CharField(max_length=50)
-    phone_number = models.CharField(validators=[phone_regex], max_length=17)
-    insurance = models.CharField(max_length=50)
+    address_city = models.CharField(max_length=50, blank=True)
+    address_street = models.CharField(max_length=50, blank=True)
+    address_psc = models.CharField(max_length=5, validators=[psc_regex], blank=True)
+    address_country = models.CharField(max_length=50, blank=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    insurance = models.CharField(max_length=50, blank=True)
 
     def get_absolute_url(self):
         return reverse("patients:patient_detail", kwargs={'pk':self.pk})
@@ -34,13 +41,13 @@ class RegisteredPatient(Patient):
 
 class NotRegisteredPatient(Patient):
     global phone_regex
-    doctor_first_name = models.CharField(max_length=25)
-    doctor_last_name = models.CharField(max_length=25)
-    doctor_phone = models.CharField(validators=[phone_regex], max_length=17)
-    doctor_address_city = models.CharField(max_length=50)
-    doctor_address_street = models.CharField(max_length=50)
-    doctor_address_psc = models.CharField(max_length=5, validators=[psc_regex])
-    doctor_address_country = models.CharField(max_length=50)
+    doctor_first_name = models.CharField(max_length=25, blank=True)
+    doctor_last_name = models.CharField(max_length=25, blank=True)
+    doctor_phone = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    doctor_address_city = models.CharField(max_length=50, blank=True)
+    doctor_address_street = models.CharField(max_length=50, blank=True)
+    doctor_address_psc = models.CharField(max_length=5, validators=[psc_regex], blank=True)
+    doctor_address_country = models.CharField(max_length=50, blank=True)
 
 
 stat_id = 9707157835

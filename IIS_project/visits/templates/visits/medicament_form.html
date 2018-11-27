@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    {% if not form.instance.pk %}
+        <h1>Add Medicament</h1>
+    {% else %}
+        <h1>Update Medicament</h1>
+    {% endif %}
+    <br>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        {% if form.instance.pk %}
+            <input type="submit" value="Update" class="btn-info">
+        {% else %}
+            <input type="submit" value="Create" class="btn-info">
+        {% endif %}
+    </form>
+
+</div>
+
+{% endblock %}

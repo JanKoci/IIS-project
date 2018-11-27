@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Examination Detail</h1>
+        <a href="{% url 'visits:examination_delete' pk=examination.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'visits:examination_update' pk=examination.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Name:</label></td>
+                <td>{{examination.name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{examination.visit_id.patient_id.first_name}} {{examination.visit_id.patient_id.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=examination.visit_id.patient_id.person_id %}">
+                        {{examination.visit_id.patient_id.person_id}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Date:</label></td>
+                <td>{{examination.date}}</td>
+            </tr>
+            <tr>
+                <td><label>Time:</label></td>
+                <td>{{examination.time}}</td>
+            </tr>
+            <tr>
+                <td><label>Workplace Name:</label></td>
+                <td>{{examination.workplace_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Workplace Address:</label></td>
+                <td>{{examination.workplace_city}}, {{examination.workplace_street}},
+                 {{examination.workplace_postcode}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

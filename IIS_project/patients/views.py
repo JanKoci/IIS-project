@@ -12,9 +12,10 @@ from patients.forms import NotRegPatientForm, RegPatientForm
 
 # Create your views here.
 
-class PatientList(FilterView):
+class PatientListView(FilterView):
     model = models.Patient
     template_name = 'patients/patient_list.html'
+    filterset_fields = fields = ['person_id', 'first_name', 'last_name', 'birth_date',]
 
 class PatientDetailView(DetailView):
     context_object_name = 'patient'
@@ -54,9 +55,3 @@ class PatientDeleteView(DeleteView):
     model = models.Patient
     template_name = 'patients/patient_confirm_delete.html'
     success_url = reverse_lazy('patients:patient_list')
-
-# class NotRegPatientDeleteView(DetailView):
-#     model = models.NotRegisteredPatient
-#     context_object_name = "patient"
-#     template_name = 'patient_confirm_delete.html'
-#     success_url = reverse_lazy('patients:patient_list')
