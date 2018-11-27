@@ -41,3 +41,37 @@ class AppointmentDeleteView(DeleteView):
     template_name = 'appointments/appointments_delete.html'
     success_url = reverse_lazy('appointments:appointments_list')
 
+
+class PerformanceAppointmentCreateView(CreateView):
+    model = models.PerformanceAppointment
+    template_name = 'appointments/performance_form.html'
+    fields = ['name', 'appointment_id']
+
+    def get_initial(self):
+        initial = super().get_initial()
+
+        if 'appointment' in self.kwargs:
+            initial['appointment_id'] = models.Appointment.objects.get(pk=self.kwargs['appointment'])
+        return initial
+
+
+class PerformanceAppointmentDetailView(DetailView):
+    model = models.PerformanceAppointment
+    template_name = 'appointments/performance_detail.html'
+
+
+class PerformanceAppointmentUpdateView(UpdateView):
+    model = models.PerformanceAppointment
+    template_name = 'appointments/performance_form.html'
+    fields = ['name']
+
+
+class PerformanceAppointmentDeleteView(DeleteView):
+    model = models.PerformanceAppointment
+    template_name = 'appointments/performance_delete.html'
+
+    def get_success_url(self):
+        performance = models.PerformanceAppointment.objects.get(pk=self.kwargs['pk'])
+        appointment = performance.appointment_id
+        return reverse_lazy("appointments:appointment_detail", kwargs={'pk':appointment.pk})
+

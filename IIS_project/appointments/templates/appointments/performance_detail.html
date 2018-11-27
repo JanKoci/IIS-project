@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Performance Detail</h1>
+        <a href="{% url 'appointments:performance_delete' pk=performanceappointment.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</a>
+        </a>
+        <a href="{% url 'appointments:performance_update' pk=performanceappointment.pk %}">
+            <button type="button" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <table class="table table-boarded">
+            <tr>
+                <td><label>Name: </label></td>
+                <td>{{performanceappointment.name}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name: </label></td>
+                <td>{{performanceappointment.appointment_id.patient.first_name}} 
+                    {{performanceappointment.appointment_id.patient.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=performanceappointment.appointment_id.patient.person_id %}">
+                        {{performanceappointment.appointment_id.patient.person_id}}
+                    </a>
+                </td>   
+            </tr>
+            <tr>
+                <td><label>Appointment Date:</label></td>
+                <td>{{performanceappointment.appointment_id.appointment_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Appointment Time:</label></td>
+                <td>{{performanceappointment.appointment_id.appointment_time}}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock  %}

@@ -34,8 +34,18 @@
                 <td>{{appointment.creation_date}}</td>
             </tr>
             <tr>
-                <td> <label>Performances: </label> </td>
-                <td></td>
+                <td> <label>Medical Performances: </label> </td>
+                <td>
+                    <a href="{% url 'appointments:performance_create' appointment=appointment.id %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for performance in appointment.performanceappointment_set.all %}
+                        <a href="{% url 'appointments:performance_detail' pk=performance.pk %}">
+                            {{performance.name}}
+                        </a>
+                        , 
+                    {% endfor %}
+                </td>
             </tr>
 
         </table>
