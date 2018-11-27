@@ -21,14 +21,21 @@ class Visit(models.Model):
         return reverse("visits:visit_detail", kwargs={'pk':self.pk})
 
 
-class Performance(models.Model):
+class PerformanceBase(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
+
+    class Meta:
+        abstract = True
+
+    def get_absolute_url(self):
+        pass
+
+class Performance(PerformanceBase):
     visit_id = models.ForeignKey(Visit, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse("visits:visit_detail", kwargs={'pk':self.visit_id.pk})
-
+        return reverse("visits:visit_detail", kwargs={"pk" : self.visit_id.pk})
 
 class Medicament(models.Model):
     id = models.AutoField(primary_key=True)
