@@ -9,51 +9,35 @@
         <a href="{% url 'appointments:appointment_update' pk=appointment.pk %}">
             <button type="edit" class="btn-info" style="float: right;">Edit</button>
         </a>
-        <a href="{% url 'patients:patient_detail' pk=appointment.patient.person_id %}">
-            <button type="button" class="btn-info" style="float: right;" script="background-color: red;">Patient detail</button>
-        </a>
 
         <table class="table table-boarded">
             <tr>
-                <td> <label>Appointment Date: </label></td>
+                <td> <label>Date: </label></td>
                 <td>{{appointment.appointment_date}}</td>
+            </tr>
+            <tr>
+                <td> <label>Time: </label></td>
+                <td>{{appointment.appointment_time}}</td>
+            </tr>
+            <tr>
+                <td> <label>Patient Name: </label></td>
+                <td>{{appointment.patient.first_name}} {{appointment.patient.last_name}}</td>
+            </tr>
+            <tr>
+                <td> <label>Personal ID: </label></td>
+                <td>
+                    <a href="{{ appointment.patient.get_absolute_url }}"> {{ appointment.patient.person_id }} </a>
+                </td>
             </tr>
             <tr>
                 <td> <label>Creation Date: </label></td>
                 <td>{{appointment.creation_date}}</td>
             </tr>
             <tr>
-                <td> <label>First Name: </label></td>
-                <td>{{appointment.patient.first_name}}</td>
-            </tr>
-            <tr>
-                <td> <label>Last Name: </label></td>
-                <td>{{appointment.patient.last_name}}</td>
-            </tr>
-            <tr>
-                <td> <label>Person ID: </label></td>
-                <td>{{appointment.patient.person_id}}
-            </tr>
-            <tr>
-                <td> <label>Birth Date: </label></td>
-                <td>{{appointment.patient.birth_date}}
-            </tr>
-            <tr>
-                <td> <label>Insurence: </label></td>
-                <td>{{appointment.patient.insurance}}</td>
-            </tr>
-            <tr>
-                <td> <label>Prescriptions: </label></td>
+                <td> <label>Performances: </label> </td>
                 <td></td>
             </tr>
-            <tr>
-                <td> <label>Operations: </label> </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td> <label>Further Examination: </label> </td>
-                <td></td>
-            </tr>
+
         </table>
     </div>
 {% endblock %}
