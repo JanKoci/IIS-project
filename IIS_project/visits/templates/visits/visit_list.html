@@ -27,22 +27,26 @@
         <table class="table table-hover">
             <thead>
                 <tr class="bg-primary">
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Personal ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Patient Name</th>
-                    <th scope="col">Patient ID</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 {% for visit in filter.qs %}
                     <tr>
+                        <td>{{visit.patient_id.first_name}} {{visit.patient_id.last_name}}</td>
+                        <td>
+                            <a href="{% url 'patients:patient_detail' pk=visit.patient_id.person_id %}">
+                                {{visit.patient_id.person_id}}
+                            </a>
+                        </td>
                         <td>{{visit.visit_date}}</td>
                         <td>{{visit.visit_time}}</td>
-                        <td>{{visit.patient_id.first_name}} {{visit.patient_id.last_name}}</td>
-                        <td>{{visit.patient_id.person_id}}</td>
                         <td>
-                            <a href="">
+                            <a href="{% url 'visits:visit_detail' pk=visit.pk %}">
                                 <button type="button" class="btn-info">detail</button>
                             </a>
                         </td>

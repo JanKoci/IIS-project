@@ -1,4 +1,80 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Visit Detail</h1>
+    <div class="jumbotron">
+        <h1>Visit Detail</h1>
+        <a href="{% url 'visits:visit_delete' pk=visit.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'visits:visit_update' pk=visit.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Date:</label></td>
+                <td>{{visit.visit_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Time:</label></td>
+                <td>{{visit.visit_time}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{visit.patient_id.first_name}} {{visit.patient_id.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=visit.patient_id.person_id %}">
+                        {{visit.patient_id.person_id}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Creation Date:</label></td>
+                <td>{{visit.creation_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Medical Performances:</label></td>
+                <td>
+                    <a href="{% url 'visits:performance_create' visit=visit.id %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for performance in visit.performance_set.all %}
+                        <a href="{% url 'visits:performance_detail' pk=performance.pk %}">
+                            {{performance.name}}
+                        </a>
+                        ,
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td><label>Medicaments:</label></td>
+                <td>
+                    <a href="{% url 'visits:medicament_create' visit=visit.pk %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for medicament in visit.medicament_set.all %}
+                        <a href="{% url 'visits:medicament_detail' pk=medicament.pk %}">
+                            {{medicament.name}}
+                        </a>
+                        ,
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td><label>External Examination:</label></td>
+                <td>
+                    <a href="{% url 'visits:examination_create' visit=visit.pk %}">
+                        <button class="btn-info">Add</button>
+                    </a>
+                    {% for examination in visit.examination_set.all %}
+                        <a href="{% url 'visits:examination_detail' pk=examination.pk %}">
+                            {{examination.name}}
+                        </a>
+                        ,
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
 {% endblock %}
