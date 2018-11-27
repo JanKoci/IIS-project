@@ -14,7 +14,7 @@ class Visit(models.Model):
     id = models.AutoField(primary_key=True)
     visit_date = models.DateField()
     visit_time = models.TimeField()
-    # creation_date = models.DateField(auto_now_add=True)
+    creation_date = models.DateField(auto_now_add=True)
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name='Patient')
 
     def get_absolute_url(self):

@@ -30,6 +30,10 @@
                 </td>
             </tr>
             <tr>
+                <td><label>Creation Date:</label></td>
+                <td>{{visit.creation_date}}</td>
+            </tr>
+            <tr>
                 <td><label>Medical Performances:</label></td>
                 <td>
                     <a href="{% url 'visits:performance_create' visit=visit.id %}">
