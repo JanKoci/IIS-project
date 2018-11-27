@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>{{vaccination.patient_id.first_name}} {{vaccination.patient_id.first_name}} Vaccinations</h1>
+
+        <a href="">
+            <button type="button" class="btn btn-info btn-lg">Add Vaccination</button>
+        </a>
+        <br>
+        <br>
+
+        <table class="table table-hover">
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col">Vaccine Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col"></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vaccination in object_list %}
+                    <tr>
+                        <td>{{vaccination.vaccine_name}}</td>
+                        <td>{{vaccination.date}}</td>
+                        <td>{{vaccination.time}}</td>
+                        <td>
+                            <a href="">
+                                <button type="button" class="btn-info">detail</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
