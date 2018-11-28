@@ -2,6 +2,39 @@
 
 {% block content %}
     <div class="jumbotron">
-        <h1>Hello world</h1>
+        <h1>Today's appointments</h1>
+        <br>
+        <br>
+        <table class="table table-boarded">
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Personal ID</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in object_list %}
+                    <tr>
+                        <td>{{appointment.patient.first_name}} {{appointment.patient.last_name}}</td>
+                        <td>
+                            <a href={% url 'patients:patient_detail' pk=appointment.patient.person_id %}>
+                                {{appointment.patient.person_id}}
+                            </a>
+                        </td>
+                        <td>{{appointment.appointment_date}}</td>
+                        <td>{{appointment.appointment_time}}</td>
+                        <td>
+                            <a href="{% url 'appointments:appointment_detail' pk=appointment.pk %}">
+                                <button type="button" class="btn-info">detail</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
     </div>
 {% endblock %}
