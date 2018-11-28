@@ -84,6 +84,22 @@
                 <td> <label>Registration Date:</label></td>
                 <td>{{patient.registeredpatient.registration_date}}</td>
             </tr>
+            <tr>
+                <td><label>Vaccination:</label></td>
+                <td>
+                    <a href="{% url 'vaccinations:vaccination_list' patient=patient.pk %}">
+                        <button class="btn-info">Vaccinations</button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Regular Visitations:</label></td>
+                <td>
+                    <a href="">
+                        <button class="btn-info">Visitations</button>
+                    </a>
+                </td>
+            </tr>
             {% endif %}
 
 

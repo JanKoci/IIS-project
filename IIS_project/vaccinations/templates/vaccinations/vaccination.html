@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Vaccination Detail</h1>
+        <a href="{% url 'vaccinations:vaccination_delete' pk=vaccination.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'vaccinations:vaccination_update' pk=vaccination.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Vaccine Name:</label></td>
+                <td>{{vaccination.vaccine_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Date:</label></td>
+                <td>{{vaccination.appointment_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Time:</label></td>
+                <td>{{vaccination.appointment_time}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{vaccination.patient.first_name}} {{vaccination.patient.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=vaccination.patient.pk %}">
+                        {{vaccination.patient.pk}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Creation Date:</label></td>
+                <td>{{vaccination.creation_date}}</td>
+            </tr>
+
+        </table>
+    </div>
+{% endblock %}
