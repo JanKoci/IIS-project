@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Visitation Detail</h1>
+        <a href="{% url 'visitations:visitation_delete' pk=visitation.pk %}">
+            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+        </a>
+        <a href="{% url 'visitations:visitation_update' pk=visitation.pk %}">
+            <button type="edit" class="btn-info" style="float: right;">Edit</button>
+        </a>
+        <table class="table table-bordered">
+            <tr>
+                <td><label>Date:</label></td>
+                <td>{{visitation.appointment_date}}</td>
+            </tr>
+            <tr>
+                <td><label>Time:</label></td>
+                <td>{{visitation.appointment_time}}</td>
+            </tr>
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{visitation.patient.first_name}} {{visitation.patient.last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    <a href="{% url 'patients:patient_detail' pk=visitation.patient.pk %}">
+                        {{visitation.patient.pk}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Creation Date:</label></td>
+                <td>{{visitation.creation_date}}</td>
+            </tr>
+        </table>
+        <br>
+        {% if visitation.note %}
+            <label>Note:</label> {{visitation.note}}
+        {% endif %}
+
+    </div>
+{% endblock %}

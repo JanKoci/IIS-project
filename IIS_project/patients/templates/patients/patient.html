@@ -95,7 +95,7 @@
             <tr>
                 <td><label>Regular Visitations:</label></td>
                 <td>
-                    <a href="">
+                    <a href="{% url 'visitations:visitation_list' patient=patient.pk %}">
                         <button class="btn-info">Visitations</button>
                     </a>
                 </td>
