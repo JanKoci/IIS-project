@@ -15,7 +15,7 @@ from patients.forms import NotRegPatientForm, RegPatientForm
 class PatientListView(FilterView):
     model = models.Patient
     template_name = 'patients/patient_list.html'
-    filterset_fields = fields = ['person_id', 'first_name', 'last_name', 'birth_date',]
+    filterset_fields = ['person_id', 'first_name', 'last_name', 'birth_date',]
 
 class PatientDetailView(DetailView):
     context_object_name = 'patient'
