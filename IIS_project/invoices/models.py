@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class Invoice(models.Model):
     id = models.AutoField(primary_key=True)
-    creation_date = models.DateField()
+    creation_date = models.DateField(verbose_name="Date")
     amount = models.IntegerField()
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name='Patient')
 
