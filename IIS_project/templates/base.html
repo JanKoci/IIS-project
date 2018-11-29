@@ -39,9 +39,12 @@
                         <li> <a class="navbar-link" href="{% url 'patients:patient_list' %}">Pacients</a> </li>
                         <li> <a class="navbar-link" href="{% url 'appointments:appointments_list' %}">Appointments</a> </li>
                         <li> <a class="navbar-link" href="{% url 'visits:visit_list' %}">Visits</a> </li>
+                        {% if not perms.invoice.can_view %}
                         <li> <a class="navbar-link" href="{% url 'invoices:invoice_list' %}">Invoices</a> </li>
+                        {% endif %}
+
                         {% if user.is_authenticated %}
-                            <li> <a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+                            <li> <a class="navbar-link" href="{% url 'logout' %}">Log out</a></li>
                         {% endif %}
                     </ul>
                 </div>

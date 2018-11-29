@@ -6,11 +6,13 @@ from invoices import models
 from invoices.filters import InvoiceFilter
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 # Create your views here.
 
 
-class InvoiceListView(LoginRequiredMixin, FilterView):
+class InvoiceListView(PermissionRequiredMixin, LoginRequiredMixin, FilterView):
+    permission_required = 'invoices.can_view'
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
