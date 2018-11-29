@@ -11,7 +11,15 @@
         <br>
         <form method="post">
             {% csrf_token %}
-            {{form.as_p}}
+            {% for field in form %}
+                <p>
+                {% if field.field.required %}
+                    <span style="color:red;">*</span>
+                {% endif %}
+                <label for="{{ field.label }}">{{ field.label_tag }}</label>
+                {{ field }}
+                </p>
+            {% endfor %}
             {% if not form.instance.pk %}
                 <input type="submit" value="Create" class="btn-info">
             {% else %}

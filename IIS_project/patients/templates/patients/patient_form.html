@@ -1,9 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
+        {% if not form.instance.pk %}
+            <h1>Create Patient</h1>
+        {% else %}
+            <h1>Update Patient</h1>
+        {% endif %}
+        <br>
+        <br>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {% for field in form %}
+                <p>
+                {% if field.field.required %}
+                    <span style="color:red;">*</span>
+                {% endif %}
+                <label for="{{ field.label }}">{{ field.label_tag }}</label>
+                {{ field }}
+                </p>
+            {% endfor %}
             {% if not form.instance.pk %}
                 <input type="submit" value="Create" class="btn-info">
             {% else %}
