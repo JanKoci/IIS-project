@@ -3,7 +3,7 @@
 {% block content %}
     <div class="jumbotron">
         <a href="{% url 'appointments:appointments_create' %}">
-            <button type="button" class="btn btn-info btn-lg">NEW appointment</button>
+            <button type="button" class="btn btn-info btn-lg">ADD Appointment</button>
         </a>
         <br>
         <br>
@@ -31,7 +31,7 @@
                     <th scope="col">Personal ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th/>
+                    <th><th/>
                 </tr>
             </thead>
             <tbody>
@@ -47,9 +47,6 @@
                             <a href="{{ appointment.get_absolute_url }}">
                             <button type="button" class="btn-info" script="background-color: red;">detail</button>
                             </a>
-                        </td>
-                        <td>
-
                         </td>
                     </tr>
                 {% endfor %}

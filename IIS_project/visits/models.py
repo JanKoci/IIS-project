@@ -12,8 +12,8 @@ from patients.models import Patient
 
 class Visit(models.Model):
     id = models.AutoField(primary_key=True)
-    visit_date = models.DateField()
-    visit_time = models.TimeField()
+    visit_date = models.DateField(verbose_name="Date")
+    visit_time = models.TimeField(verbose_name="Time")
     creation_date = models.DateField(auto_now_add=True)
     patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name='Patient')
 
