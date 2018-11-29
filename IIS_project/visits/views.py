@@ -6,42 +6,58 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from visits import models
 from visits.filters import VisitFilter
 from visits.forms import VisitCreateForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class VisitListView(FilterView):
-    # model = models.Visit
+class VisitListView(LoginRequiredMixin, FilterView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     filterset_class = VisitFilter
     template_name = 'visits/visit_list.html'
-    # filterset_fields = ['visit_date', 'patient']
 
 
-class VisitDetailView(DetailView):
+class VisitDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visit
     context_object_name = 'visit'
     template_name = 'visits/visit.html'
 
 
-class VisitCreateView(CreateView):
-    model = models.Visit
-    template_name = 'visits/visit_form.html'
-    fields = ['visit_date', 'visit_time', 'patient_id']
-    # form_class = VisitCreateForm
+class VisitCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
 
-
-class VisitUpdateView(UpdateView):
     model = models.Visit
     template_name = 'visits/visit_form.html'
     fields = ['visit_date', 'visit_time', 'patient_id']
 
 
-class VisitDeleteView(DeleteView):
+class VisitUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
+    model = models.Visit
+    template_name = 'visits/visit_form.html'
+    fields = ['visit_date', 'visit_time', 'patient_id']
+
+
+class VisitDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visit
     template_name = 'visits/visit_confirm_delete.html'
     success_url = reverse_lazy('visits:visit_list')
 
 
-class MedicamentCreateView(CreateView):
+class MedicamentCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Medicament
     template_name = 'visits/medicament_form.html'
     fields = ['name', 'substance', 'visit_id']
@@ -52,18 +68,27 @@ class MedicamentCreateView(CreateView):
         return initial
 
 
-class MedicamentDetailView(DetailView):
+class MedicamentDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Medicament
     template_name = 'visits/medicament.html'
 
 
-class MedicamentUpdateView(UpdateView):
+class MedicamentUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Medicament
     template_name = 'visits/medicament_form.html'
     fields = ['name', 'substance']
 
 
-class MedicamentDeleteView(DeleteView):
+class MedicamentDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Medicament
     template_name = 'visits/medicament_confirm_delete.html'
 
@@ -73,7 +98,10 @@ class MedicamentDeleteView(DeleteView):
         return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})
 
 
-class ExaminationCreateView(CreateView):
+class ExaminationCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Examination
     template_name = 'visits/examination_form.html'
     fields = ['name', 'date', 'time', 'workplace_city', 'workplace_street',
@@ -85,19 +113,28 @@ class ExaminationCreateView(CreateView):
         return initial
 
 
-class ExaminationDetailView(DetailView):
+class ExaminationDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Examination
     template_name = 'visits/examination.html'
 
 
-class ExaminationUpdateView(UpdateView):
+class ExaminationUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Examination
     template_name = 'visits/examination_form.html'
     fields = ['name', 'date', 'time', 'workplace_city', 'workplace_street',
             'workplace_postcode', 'workplace_name']
 
 
-class ExaminationDeleteView(DeleteView):
+class ExaminationDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Examination
     template_name = 'visits/examination_confirm_delete.html'
 
@@ -107,14 +144,14 @@ class ExaminationDeleteView(DeleteView):
         return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})
 
 
-class PerformanceCreateView(CreateView):
+class PerformanceCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Performance
     template_name = 'visits/performance_form.html'
     fields = ['name', 'visit_id']
 
-    # def form_valid(self, form):
-    #     visit_id = models.Visit.objects.get(pk=self.kwargs['visit'])
-    #     return super(PerformanceCreateView, self).form_valid(form)
 
     def get_initial(self):
         initial = super().get_initial()
@@ -125,18 +162,27 @@ class PerformanceCreateView(CreateView):
         return initial
 
 
-class PerformanceDetailView(DetailView):
+class PerformanceDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Performance
     template_name = 'visits/performance.html'
 
 
-class PerformanceUpdateView(UpdateView):
+class PerformanceUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Performance
     template_name = 'visits/performance_form.html'
     fields = ['name']
 
 
-class PerformanceDeleteView(DeleteView):
+class PerformanceDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Performance
     template_name = 'visits/performance_confirm_delete.html'
 
