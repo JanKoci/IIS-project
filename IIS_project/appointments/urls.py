@@ -15,4 +15,7 @@ urlpatterns = [
     path('performance/<int:pk>/',views.PerformanceAppointmentDetailView.as_view(), name='performance_detail'),
     path('performance/update/<int:pk>', views.PerformanceAppointmentUpdateView.as_view(), name='performance_update'),
     path('performance/delete/<int:pk>', views.PerformanceAppointmentDeleteView.as_view(), name='performance_delete'),
+
+    path('transform/<int:pk>/', views.TransformationView, name='transformation'),
+    path('transformconfirm/<int:pk>/', views.ConfirmTrasformationView, name='transformation_confirm'),
 ]
