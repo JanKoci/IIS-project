@@ -5,16 +5,22 @@ from django.views.generic.list import ListView
 from patients.models import Patient
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def VisitationsView(request, patient):
     object_list = models.Visitation.objects.all().filter(patient=patient)
     context_dict = {'object_list' : object_list, 'patient' : patient}
     return render(request, 'visitations/visitation_list.html', context=context_dict)
 
 
-class VisitationCreateView(CreateView):
+class VisitationCreateView(LoginRequiredMixin, CreateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visitation
     template_name = 'visitations/visitation_form.html'
     fields = ['appointment_date', 'appointment_time', 'patient', 'note']
@@ -25,18 +31,27 @@ class VisitationCreateView(CreateView):
         return initial
 
 
-class VisitationDetailView(DetailView):
+class VisitationDetailView(LoginRequiredMixin, DetailView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visitation
     template_name = 'visitations/visitation.html'
 
 
-class VisitationUpdateView(UpdateView):
+class VisitationUpdateView(LoginRequiredMixin, UpdateView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visitation
     template_name = 'visitations/visitation_form.html'
     fields = ['appointment_date', 'appointment_time', 'patient', 'note']
 
 
-class VisitationDeleteView(DeleteView):
+class VisitationDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = models.Visitation
     template_name = 'visitations/visitation_confirm_delete.html'
 

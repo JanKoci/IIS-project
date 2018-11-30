@@ -1,8 +1,13 @@
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from appointments.models import Appointment
 import datetime
 
-class HomePage(ListView):
+class HomePage(LoginRequiredMixin, ListView):
+    login_url = 'login'
+    redirect_field_name = 'redirect_to'
+
     model = Appointment
     template_name = 'home_page.html'
 
@@ -12,4 +17,3 @@ class HomePage(ListView):
             'object_list': Appointment.objects.all().filter(appointment_date=datetime.date.today())
         })
         return context
-    

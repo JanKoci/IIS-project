@@ -2,12 +2,17 @@
 {% block content %}
     <div class="jumbotron">
         <h1>Examination Detail</h1>
-        <a href="{% url 'visits:examination_delete' pk=examination.pk %}">
-            <button type="delete" class="btn-danger" style="float: right;">Delete</button>
-        </a>
-        <a href="{% url 'visits:examination_update' pk=examination.pk %}">
-            <button type="edit" class="btn-info" style="float: right;">Edit</button>
-        </a>
+        {% if perms.visits.delete_examination %}
+            <a href="{% url 'visits:examination_delete' pk=examination.pk %}">
+                <button type="delete" class="btn-danger" style="float: right;">Delete</button>
+            </a>
+        {% endif %}
+        {% if perms.visits.change_examination %}
+            <a href="{% url 'visits:examination_update' pk=examination.pk %}">
+                <button type="edit" class="btn-info" style="float: right;">Edit</button>
+            </a>
+        {% endif %}
+        
         <table class="table table-bordered">
             <tr>
                 <td><label>Name:</label></td>
