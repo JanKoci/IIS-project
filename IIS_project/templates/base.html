@@ -21,6 +21,7 @@
     </head>
 
     <body>
+        {% if user.is_authenticated %}
         <nav class="my_navbar navbar navbar-default" role="navigation">
             <div class="container-fluid">
 
@@ -42,15 +43,12 @@
                         {% if perms.invoices.view_invoice %}
                         <li> <a class="navbar-link" href="{% url 'invoices:invoice_list' %}">Invoices</a> </li>
                         {% endif %}
-
-                        {% if user.is_authenticated %}
-                            <li> <a class="navbar-link" href="{% url 'logout' %}">Log out</a></li>
-                        {% endif %}
+                        <li> <a class="navbar-link" href="{% url 'logout' %}">Log out</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-
+        {% endif %}
 
         <div class="container">
             {% block content %}
