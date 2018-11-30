@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class InvoiceListView(PermissionRequiredMixin, LoginRequiredMixin, FilterView):
-    permission_required = 'invoices.can_view'
+    permission_required = ('invoices.view_invoice')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -20,7 +20,8 @@ class InvoiceListView(PermissionRequiredMixin, LoginRequiredMixin, FilterView):
     template_name = 'invoices/invoice_list.html'
 
 
-class InvoiceCreateView(LoginRequiredMixin, CreateView):
+class InvoiceCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    permission_required = ('invoices.add_invoice')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -29,7 +30,8 @@ class InvoiceCreateView(LoginRequiredMixin, CreateView):
     template_name = 'invoices/invoice_form.html'
 
 
-class InvoiceUpdateView(LoginRequiredMixin, UpdateView):
+class InvoiceUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('invoices.change_invoice')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -38,7 +40,8 @@ class InvoiceUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'invoices/invoice_form.html'
 
 
-class InvoiceDeleteView(LoginRequiredMixin, DeleteView):
+class InvoiceDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    permission_required = ('invoices.delete_invoice')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -47,7 +50,8 @@ class InvoiceDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('invoices:invoice_list')
 
 
-class InvoiceDetailView(LoginRequiredMixin, DetailView):
+class InvoiceDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
+    permission_required = ('invoices.view_invoice')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 

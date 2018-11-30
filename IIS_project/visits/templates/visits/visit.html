@@ -64,9 +64,11 @@
             <tr>
                 <td><label>External Examination:</label></td>
                 <td>
-                    <a href="{% url 'visits:examination_create' visit=visit.pk %}">
-                        <button class="btn-info">Add</button>
-                    </a>
+                    {% if perms.visits.add_examination %}
+                        <a href="{% url 'visits:examination_create' visit=visit.pk %}">
+                            <button class="btn-info">Add</button>
+                        </a>
+                    {% endif %}
                     {% for examination in visit.examination_set.all %}
                         <a href="{% url 'visits:examination_detail' pk=examination.pk %}">
                             {{examination.name}}

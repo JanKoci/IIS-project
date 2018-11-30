@@ -6,7 +6,7 @@ from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from visits import models
 from visits.filters import VisitFilter
 from visits.forms import VisitCreateForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 # Create your views here.
 
@@ -98,7 +98,8 @@ class MedicamentDeleteView(LoginRequiredMixin, DeleteView):
         return reverse_lazy("visits:visit_detail", kwargs={'pk':visit.pk})
 
 
-class ExaminationCreateView(LoginRequiredMixin, CreateView):
+class ExaminationCreateView(PermissionRequiredMixin, LoginRequiredMixin, CreateView):
+    permission_required = ('visits.add_examination')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -113,7 +114,8 @@ class ExaminationCreateView(LoginRequiredMixin, CreateView):
         return initial
 
 
-class ExaminationDetailView(LoginRequiredMixin, DetailView):
+class ExaminationDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
+    permission_required = ('visits.view_examination')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -121,7 +123,8 @@ class ExaminationDetailView(LoginRequiredMixin, DetailView):
     template_name = 'visits/examination.html'
 
 
-class ExaminationUpdateView(LoginRequiredMixin, UpdateView):
+class ExaminationUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
+    permission_required = ('visits.change_examination')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
@@ -131,7 +134,8 @@ class ExaminationUpdateView(LoginRequiredMixin, UpdateView):
             'workplace_postcode', 'workplace_name']
 
 
-class ExaminationDeleteView(LoginRequiredMixin, DeleteView):
+class ExaminationDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
+    permission_required = ('visits.delete_examination')
     login_url = 'login'
     redirect_field_name = 'redirect_to'
 
