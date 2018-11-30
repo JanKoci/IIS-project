@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>Invoice detail</h1>
+        <table class="table table-boarded">
+            <tr>
+                <td><label>Patient Name:</label></td>
+                <td>{{first_name}} {{last_name}}</td>
+            </tr>
+            <tr>
+                <td><label>Personal ID:</label></td>
+                <td>
+                    {{.person_id}}
+                </td>
+            </tr>
+            <tr>
+                <td><label>Insurance Company:</label></td>
+                <td>{{insurance}}</td>
+            </tr>
+            <tr>
+                <td><label>Amount of Money:</label></td>
+                <td>{{amount}}</td>
+            </tr>
+            <tr>
+                <td><label>Creation Date:</label></td>
+                <td>{{creation_date}}</td>
+            <tr>
+        </table>
+    </div>
+{% endblock  %}

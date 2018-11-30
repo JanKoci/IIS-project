@@ -15,6 +15,13 @@ class VisitListView(FilterView):
     template_name = 'visits/visit_list.html'
     # filterset_fields = ['visit_date', 'patient']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'object_list': models.Visit.objects.all().order_by("-visit_date")
+        })
+        return context
+
 
 class VisitDetailView(DetailView):
     model = models.Visit

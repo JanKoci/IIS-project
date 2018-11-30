@@ -17,6 +17,14 @@ class PatientListView(FilterView):
     template_name = 'patients/patient_list.html'
     filterset_fields = ['person_id', 'first_name', 'last_name', 'birth_date',]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'object_list': models.Patient.objects.all().order_by("last_name")
+        })
+        return context
+ 
+
 class PatientDetailView(DetailView):
     context_object_name = 'patient'
     template_name = 'patients/patient.html'

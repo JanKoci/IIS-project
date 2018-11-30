@@ -35,9 +35,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for invoice in filter.qs %}
+                {% for invoice in object_list %}
                     <tr>
-                        <td>{{invoice.patient_id.first_name}} {{invoice.patient_id.last_name}}</td>
+                        <td>{{invoice.patient_id.last_name}} {{invoice.patient_id.first_name}}</td>
                         <td>
                             <a href="{% url 'patients:patient_detail' pk=invoice.patient_id.person_id %}">
                                 {{invoice.patient_id.person_id}}
