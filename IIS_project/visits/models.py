@@ -1,9 +1,3 @@
-"""
-    TODO:
-        * validators
-            - date
-"""
-
 from django.db import models
 from django.urls import reverse
 from patients.models import Patient

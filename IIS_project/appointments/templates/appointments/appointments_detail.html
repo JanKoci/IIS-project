@@ -9,8 +9,11 @@
         <a href="{% url 'appointments:appointment_update' pk=appointment.pk %}">
             <button type="edit" class="btn-info" style="float: right;">Edit</button>
         </a>
+        <a href="{% url 'appointments:transformation_confirm' pk=appointment.pk %}">
+            <button class="btn-info" style="float: right;">Create Visit</button>
+        </a>
 
-        <table class="table table-boarded">
+        <table class="table table-bordered">
             <tr>
                 <td> <label>Date: </label></td>
                 <td>{{appointment.appointment_date}}</td>
@@ -43,7 +46,7 @@
                         <a href="{% url 'appointments:performance_detail' pk=performance.pk %}">
                             {{performance.name}}
                         </a>
-                        , 
+                        ,
                     {% endfor %}
                 </td>
             </tr>

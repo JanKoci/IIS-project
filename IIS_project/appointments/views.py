@@ -6,8 +6,10 @@ from django.views.generic import DeleteView
 from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from appointments import models
+from visits.models import Visit
 from .filters import AppointmentFilter
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 #from appointments.forms import AppointmentForm
 
 # Create your views here.
@@ -100,3 +102,18 @@ class PerformanceAppointmentDeleteView(LoginRequiredMixin, DeleteView):
         performance = models.PerformanceAppointment.objects.get(pk=self.kwargs['pk'])
         appointment = performance.appointment_id
         return reverse_lazy("appointments:appointment_detail", kwargs={'pk':appointment.pk})
+
+
+def ConfirmTrasformationView(request, pk):
+    context_dict = {'pk':pk}
+    return render(request, 'appointments/confirm_transformation.html', context=context_dict)
+
+
+def TransformationView(request, pk):
+    appointment = models.Appointment.objects.get(pk=pk)
+    new_visit = Visit(visit_date=appointment.appointment_date,
+                        visit_time=appointment.appointment_time,
+                        patient_id=appointment.patient)
+    new_visit.save()
+    appointment.delete()
+    return redirect('visits:visit_detail', pk=new_visit.pk)
