@@ -9,7 +9,7 @@ class HomePage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'object_list': Appointment.objects.all().filter(appointment_date=datetime.date.today())
+            'object_list': Appointment.objects.all().filter(appointment_date=datetime.date.today()).order_by("appointment_time")
         })
         return context
     

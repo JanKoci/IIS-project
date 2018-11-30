@@ -35,9 +35,9 @@
                 </tr>
             </thead>
             <tbody>
-                {% for visit in filter.qs %}
+                {% for visit in object_list %}
                     <tr>
-                        <td>{{visit.patient_id.first_name}} {{visit.patient_id.last_name}}</td>
+                        <td>{{visit.patient_id.last_name}} {{visit.patient_id.first_name}}</td>
                         <td>
                             <a href="{% url 'patients:patient_detail' pk=visit.patient_id.person_id %}">
                                 {{visit.patient_id.person_id}}

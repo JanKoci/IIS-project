@@ -11,6 +11,10 @@
             <button type="button" class="btn-info" style="float: right;">Edit</button>  
         </a>
 
+        <a href="{% url 'invoices:invoice_pdf_detail' pk=invoice.pk %}">
+            <button type="button" class="btn-info" style="float: right;">PDF</button>
+        </a>
+
         <table class="table table-boarded">
             <tr>
                 <td><label>Patient Name:</label></td>
