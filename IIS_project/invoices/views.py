@@ -48,22 +48,3 @@ class InvoiceDetailView(DetailView):
     model = models.Invoice
     template_name = 'invoices/invoice_detail.html'
 
-
-class InvoicePDFView(View):
-    def get(self, request, *args, **kwargs):
-        invoice = models.Invoice.objects.get(pk=self.kwargs['pk'])
-        context = {
-            'first_name': invoice.patient_id.first_name,
-            'last_name': invoice.patient_id.last_name,
-            'personal_id': invoice.patient_id.person_id,
-            'insurance': invoice.patient_id.insurance,
-            'amount': invoice.amount,
-            'creation_date': invoice.creation_date
-        }
-        pdf = render_to_pdf('invoices/invoice_pdf_detail.html', context)
-        if pdf:
-            response = HttpResponse(pdf, content_type='application/pdf')
-            filename = 'Invoice_%s.pdf' %(invoice.patient_id.person_id)
-            content = "inline; filename='%s'" %(filename)
-            return
-        
