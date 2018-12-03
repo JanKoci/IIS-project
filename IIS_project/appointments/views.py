@@ -10,7 +10,6 @@ from visits.models import Visit
 from .filters import AppointmentFilter
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-#from appointments.forms import AppointmentForm
 
 # Create your views here.
 
@@ -20,6 +19,13 @@ class AppointmentList(LoginRequiredMixin, FilterView):
 
     filterset_class = AppointmentFilter
     template_name = 'appointments/appointments_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'object_list': models.Appointment.objects.all().order_by('appointment_date')
+        })
+        return context
 
 
 class AppointmentCreateView(LoginRequiredMixin, CreateView):

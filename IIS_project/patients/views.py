@@ -20,6 +20,7 @@ class PatientListView(LoginRequiredMixin, FilterView):
     template_name = 'patients/patient_list.html'
     filterset_fields = ['person_id', 'first_name', 'last_name', 'birth_date',]
 
+
 class PatientDetailView(LoginRequiredMixin, DetailView):
     login_url = 'login'
     redirect_field_name = 'redirect_to'

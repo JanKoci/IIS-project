@@ -17,6 +17,13 @@ class VisitListView(LoginRequiredMixin, FilterView):
     filterset_class = VisitFilter
     template_name = 'visits/visit_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'object_list': models.Visit.objects.all().order_by('-visit_date')
+        })
+        return context
+
 
 class VisitDetailView(LoginRequiredMixin, DetailView):
     login_url = 'login'
